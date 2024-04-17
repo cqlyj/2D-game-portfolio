@@ -92,6 +92,37 @@ k.scene("main", async () => {
     k.camPos(player.worldPos().x, player.worldPos().y - 100);
   });
 
+  k.onKeyDown((keyBtn) => {
+    console.log(keyBtn);
+    if (keyBtn !== "left" || player.isInDialogue) return;
+
+    if (keyBtn === "up" && player.curAnim() !== "walk-up") {
+      player.play("walk-up");
+      player.direction = "up";
+      return;
+    }
+
+    if (keyBtn === "down" && player.curAnim() !== "walk-down") {
+      player.play("walk-down");
+      player.direction = "down";
+      return;
+    }
+
+    if (keyBtn === "right") {
+      player.flipX = false;
+      if (player.curAnim() !== "walk-side") player.play("walk-side");
+      player.direction = "right";
+      return;
+    }
+
+    if (keyBtn === "left") {
+      player.flipX = true;
+      if (player.curAnim() !== "walk-side") player.play("walk-side");
+      player.direction = "left";
+      return;
+    }
+  });
+
   k.onMouseDown((mouseBtn) => {
     if (mouseBtn !== "left" || player.isInDialogue) return;
 
