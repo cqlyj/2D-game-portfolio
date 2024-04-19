@@ -93,7 +93,6 @@ k.scene("main", async () => {
   });
 
   k.onKeyDown((keyBtn) => {
-    console.log(keyBtn);
     if (keyBtn !== "left" || player.isInDialogue) return;
 
     if (keyBtn === "up" && player.curAnim() !== "walk-up") {
